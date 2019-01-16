@@ -1,0 +1,12 @@
+{
+  "name": "mabsherg/328/dating",
+  "authors": [
+    {
+      "name": "Marcus Absher",
+      "email": "mabsher@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
