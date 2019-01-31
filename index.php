@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * Marcus Absher
+ * Date: 1-18-19
+ * http://mabsher.greenriverdev.com/328/dating/
+*/
+
 //Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);

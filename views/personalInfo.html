@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link href="styles/styles.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body class="p-5">
+    <div class="border rounded mt-3 p-3">
+        <form action="">
+            <h1>Personal Information</h1>
+            <hr>
+            <div class="row border-0 ml-0">
+                <div class="col-md-8">
+                    <div class="form-group"><!--Name -->
+                        <label class="font-weight-bold" for="fname" >First Name</label>
+                        <div>
+                            <input type="text" class="form-control"  name="fname" id="fname">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="lname" >Last Name</label>
+                        <div>
+                            <input type="text" class="form-control"  name="lname" id="lname">
+                        </div>
+                    </div>
+                    <div class="form-group"><!--Age -->
+                        <label class="font-weight-bold" for="age" >Age</label>
+                        <div>
+                            <input type="text" class="form-control"  name="age" id="age">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold">Gender</label>
+                        <div>
+                            <input type="radio" name="gender" id="male" value="male"> &nbsp; Male &nbsp;
+
+                            <input type="radio" name="gender" id="female" value="female"> &nbsp; Female
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="phone" >Phone Number</label>
+                        <div>
+                            <input type="text" class="form-control"  name="phone" id="phone">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="border rounded tester">
+                        <p><span class="font-weight-bold">Note:</span> All information entered is protected by our privacy policy. Profile information can only be viewed by others with your permission.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+
+                </div>
+                <div class="col-md-2"><!--next button column  -->
+                    <div>
+                        <button class="btn btn-primary">NEXT</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
