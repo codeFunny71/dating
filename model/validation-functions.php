@@ -6,6 +6,8 @@
  * Time: 13:09
  */
 
+$error = [];
+
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -31,11 +33,7 @@ function validName($name){
 }
 
 function validAge($age){
-    if (is_numeric($age) && ($age > 18)){
-        return true;
-    }
-    echo "Must be over 18.";
-    return false;
+    return (is_numeric($age) && ($age > 18)) ? true : false ;
 }
 
 function validPhone($phone){
@@ -45,13 +43,17 @@ function validPhone($phone){
     $phone = trim($phone);
 
     if(count($phone) != 10 || !is_numeric($phone))
-        return "Please enter a valid phone number";
+        return false;
     else
-        return $phone;
+        return true;
 }
 
-function validOutdoor($outdoor){
+function validOutdoor($needle, $haystack ){
+    return in_array($needle, $haystack) ? true : false;
 
 }
 
-function validIndoor($indoor){}
+function validIndoor($needle, $haystack){
+    return in_array($needle, $haystack) ? true : false;
+
+}
