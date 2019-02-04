@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -12,45 +12,52 @@
     <title>Document</title>
 </head>
 <body class="p-5">
-<h1>Summary</h1>
-<hr>
-<div class="row border-0 ml-0">
-    <div class="col-6">
-        <p class="border">{{@fname}}{{@lname}}</p>
-        <p class="border">{{@gender}}</p>
-        <p class="border">{{@age}}</p>
-        <p class="border">{{@phone}}</p>
-        <p class="border">{{@emil}}</p>
-        <p class="border">{{@state}}</p>
-        <p class="border">{{@seeking}}</p>
-        <p class="border">
-            <repeat group="{{ @indoors }}" value="{{ @indoor }}">
-                <span>{{ @indoor }} </span>
-            </repeat>
-            <repeat group="{{ @outdoors }}" value="{{ @outdoor }}">
-                <span>{{ @outdoor }}</span>
-            </repeat>
-        </p>
-    <div class="col-6">
-        <div class="form-group">
-            <img src="images/profile.jpeg" alt="profile avatar image">
-        </div>
-        <div>
-            <h5>Biography</h5>
-            <p>{{@bio}}</p>
-        </div>
-    </div>
-</div>
-</div>
-<div class="row">
-    <div class="col-11">
+    <div class="rounded border mr-20 ml-20 p-5">
+        <div class="row border-0 ml-0">
+            <div class="col-6">
+                <p class="rounded border border-secondary p-3 mb-0">Name: {{@fname}} {{@lname}}</p>
+                <p class="border border-secondary p-3 mb-0">Gender: {{@gender}}</p>
+                <p class="border border-secondary p-3 mb-0">Age: {{@age}}</p>
+                <p class="border border-secondary p-3 mb-0">Phone: {{@phone}}</p>
+                <p class="border border-secondary p-3 mb-0">Email: {{@emil}}</p>
+                <p class="border border-secondary p-3 mb-0">State: {{@state}}</p>
+                <p class="border border-secondary p-3 mb-0">Seeking: {{@seeking}}</p>
+                <p class="rounded border border-secondary p-3">Interests:
+                    <repeat group="{{ @indoors }}" value="{{ @indoor }}">
+                        <span>{{ @indoor }} </span>
+                    </repeat>
+                    <repeat group="{{ @outdoors }}" value="{{ @outdoor }}">
+                        <span>{{ @outdoor }} </span>
+                    </repeat>
+                </p>
 
-    </div>
-    <div class="col-1"><!--next button column  -->
-        <div>
-            <button type="submit" class="btn btn-primary">NEXT</button>
+        </div>
+            <div class="col-6">
+                <div>
+                    <img class="w-75 h-75 ml-4" src="images/avatar.png" alt="profile avatar image">
+                </div>
+                <div>
+                    <h5>Biography</h5>
+                    <div>
+                        <p>{{@bio}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+
+            </div>
+            <div class="col-2">
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Contact Me!</button>
+                </div>
+            </div>
+            <div class="col-5"><!--next button column  -->
+
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>
