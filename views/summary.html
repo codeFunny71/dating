@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Document</title>
+</head>
+<body class="p-5">
+<h1>Summary</h1>
+<hr>
+<div class="row border-0 ml-0">
+    <div class="col-6">
+        <p class="border">{{@fname}}{{@lname}}</p>
+        <p class="border">{{@gender}}</p>
+        <p class="border">{{@age}}</p>
+        <p class="border">{{@phone}}</p>
+        <p class="border">{{@emil}}</p>
+        <p class="border">{{@state}}</p>
+        <p class="border">{{@seeking}}</p>
+        <p class="border">
+            <repeat group="{{ @indoors }}" value="{{ @indoor }}">
+                <span>{{ @indoor }} </span>
+            </repeat>
+            <repeat group="{{ @outdoors }}" value="{{ @outdoor }}">
+                <span>{{ @outdoor }}</span>
+            </repeat>
+        </p>
+    <div class="col-6">
+        <div class="form-group">
+            <img src="images/profile.jpeg" alt="profile avatar image">
+        </div>
+        <div>
+            <h5>Biography</h5>
+            <p>{{@bio}}</p>
+        </div>
+    </div>
+</div>
+</div>
+<div class="row">
+    <div class="col-11">
+
+    </div>
+    <div class="col-1"><!--next button column  -->
+        <div>
+            <button type="submit" class="btn btn-primary">NEXT</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

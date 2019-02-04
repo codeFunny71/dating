@@ -13,7 +13,7 @@
 </head>
 <body class="p-5">
 <div class="border rounded mt-3 p-3">
-    <form action="" method="post">
+    <form action="#" method="post">
         <h1>Interests</h1>
         <hr>
         <div class="row"><p class="font-weight-bold ml-3">Indoor interests</p></div>
@@ -22,7 +22,7 @@
             <repeat group="{{ @indoors }}" value="{{ @indoor }}">
                 <div class="col-3">
 
-                    <input type="checkbox" name="indoor[]" value="{{ @indoor }}"> {{ @indoor }}
+                    <input type="checkbox" name="indoors[]" value="{{ @indoor }}"> {{ @indoor }}
                 </div>
             </repeat>
         </div>
@@ -33,7 +33,7 @@
             <repeat group="{{ @outdoors }}" value="{{ @outdoor }}">
                 <div class="col-3">
 
-                    <input type="checkbox" name="outdoor[]" value="{{ @outdoor }}"> {{ @outdoor }}
+                    <input type="checkbox" name="outdoors[]" value="{{ @outdoor }}"> {{ @outdoor }}
                 </div>
             </repeat>
         </div>
@@ -43,7 +43,7 @@
             </div>
             <div class="col-1"><!--next button column  -->
                 <div>
-                    <button type="submit" class="btn btn-primary">NEXT</button>
+                    <button type="submit" name="submit" class="btn btn-primary">NEXT</button>
                 </div>
             </div>
         </div>

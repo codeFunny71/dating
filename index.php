@@ -13,9 +13,8 @@ error_reporting(E_ALL);
 //Require autoload
 require_once('vendor/autoload.php');
 session_start();
-require ('model/validation-functions.php');
 
-
+$valid = false;
 //create an instance of the Base class
 $f3 = Base::instance();
 
@@ -40,6 +39,8 @@ $f3->route('GET /',
 
 $f3->route('GET|POST /personalInfo',
     function($f3) {
+        $valid = false;
+        $errors =[];
         $f3->set('valid', false);
         if(isset($_POST['submit'])) {
             $fname = $_POST['fname'];
@@ -49,6 +50,8 @@ $f3->route('GET|POST /personalInfo',
             $phone = $_POST['phone'];
 
             include('model/validation-functions.php');
+            validatePersonal();
+            $valid = (count($errors) == 0);
 
             $f3->set('fname', $fname);
             $f3->set('lname', $lname);
@@ -56,54 +59,135 @@ $f3->route('GET|POST /personalInfo',
             $f3->set('gender', $gender);
             $f3->set('phone', $phone);
 
-            $f3->set('errors', $errors);
-            $f3->set('valid', $valid);
-
-        }
-        $template = new Template();
-        if(!$f3-get('valid')){
-            echo $template->render('views/personalInfo.html');
-        } else {
             $_SESSION['fname'] = $fname;
             $_SESSION['lname'] = $lname;
             $_SESSION['age'] = $age;
             $_SESSION['gender'] = $gender;
             $_SESSION['phone'] = $phone;
 
-            $f3->reroute('/profile');
+            $f3->set('errors', $errors);
+            $f3->set('valid', $valid);
+            if($f3->get('valid')){
+                $f3->reroute('/profile');
+                //print_r($_SESSION);
+            }
+
         }
+        $template = new Template();
+//        if(!$f3-get('valid')){
+            echo $template->render('views/personalInfo.html');
+//        } else {
+//            $_SESSION['fname'] = $fname;
+//            $_SESSION['lname'] = $lname;
+//            $_SESSION['age'] = $age;
+//            $_SESSION['gender'] = $gender;
+//            $_SESSION['phone'] = $phone;
+//
+//            $f3->reroute('/profile');
+//        }
 
     });
 
 $f3->route('GET|POST /profile',
     function($f3) {
-        //include ('includes/states.php');
-        $f3->get('states');
-        if(!empty($_POST)){
+        $valid = true;
+        $errors =[];
+        //print_r($_SESSION);
+        $f3->set('valid', false);
+        if(isset($_POST['submit'])) {
+            $email = $_POST['email'];
+            $state = $_POST['state'];
+            $seek = $_POST['seek'];
+            $bio = $_POST['bio'];
+
+//            include('model/validation-functions.php');
+//            validateProfile();
+//            $valid = (count($errors) == 0);
+//
+            $f3->set('email', $email);
+            $f3->set('state', $state);
+            $f3->set('seek', $seek);
+            $f3->set('bio', $bio);
+
+            $f3->set('errors', $errors);
+            $f3->set('valid', true);
+
+            $_SESSION['email'] = $email;
+            $_SESSION['state'] = $state;
+            $_SESSION['seek'] = $seek;
+            $_SESSION['bio'] = $bio;
+
             $f3->reroute('/interests');
         }
-
-
         $template = new Template();
-//        echo '<pre>';
-//        print_r($_SESSION);
-//        print_r($_POST);
-//        echo '</pre>';
-        echo $template->render('views/profile.html');
+//        print_r($f3->get('states'));
+//        if($f3->get('valid')){
+//            $_SESSION['email'] = $email;
+//            $_SESSION['state'] = $state;
+//            $_SESSION['seek'] = $seek;
+//            $_SESSION['bio'] = $bio;
+//
+//            $f3->reroute('/interests');
+//        } else {
+
+            echo $template->render('views/profile.html');
+//        }
     });
 
 $f3->route('GET|POST /interests',
     function($f3) {
-//        if(!empty($_POST)){
-//            $f3->reroute('/personalInfo');
-//        }
+        $valid = false;
+        $errors =[];
+        $f3->set('valid', false);
+        if(isset($_POST['submit'])) {
+            $indoors = $_POST['indoors'];
+            $outdoors = $_POST['outdoors'];
+
+            include('model/validation-functions.php');
+            validateInterests();
+            $valid = (count($errors) == 0);
+
+            $f3->set('indoors', $indoors);
+            $f3->set('outdoors', $outdoors);
+
+            $f3->set('errors', $errors);
+            $f3->set('valid', $valid);
+        }
+        $template = new Template();
+//        print_r($errors);
+        if($f3->get('valid')){
+            $_SESSION['indoors'] = $indoors;
+            $_SESSION['outdoors'] = $outdoors;
+
+          $f3->reroute('/summary');
+        } else {
+
+            echo $template->render('views/interests.html');
+        }
+    });
+
+$f3->route('GET|POST /summary',
+    function($f3) {
+
+        $f3->set('fname', $_SESSION['fname']);
+        $f3->set('lname', $_SESSION['lname']);
+        $f3->set('age', $_SESSION['age']);
+        $f3->set('gender', $_SESSION['gender']);
+        $f3->set('phone', $_SESSION['phone']);
+
+        $f3->set('email', $_SESSION['email']);
+        $f3->set('state', $_SESSION['state']);
+        $f3->set('seek', $_SESSION['seek']);
+        $f3->set('bio', $_SESSION['bio']);
+
+        $f3->set('indoors', $_SESSION['indoors']);
+        $f3->set('outdoors', $_SESSION['outdoors']);
+
 
         $template = new Template();
-//        echo '<pre>';
 //        print_r($_SESSION);
-//        print_r($_POST);
-//        echo '</pre>';
-        echo $template->render('views/interests.html');
+        echo $template->render('views/summary.html');
+
     });
 
 //Run fat free
