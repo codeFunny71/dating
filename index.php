@@ -101,7 +101,7 @@ $f3->route('GET|POST /profile',
     function($f3) {
         $valid = true;
         $errors =[];
-        print_r($_SESSION);
+        //print_r($_SESSION);
         $f3->set('valid', false);
         if(isset($_POST['submit'])) {
             $email = $_POST['email'];
@@ -121,12 +121,25 @@ $f3->route('GET|POST /profile',
             $f3->set('errors', $errors);
             $f3->set('valid', true);
 
-            $_SESSION['email'] = $email;
-            $_SESSION['state'] = $state;
-            $_SESSION['seek'] = $seek;
-            $_SESSION['bio'] = $bio;
+            $newMem = $_SESSION['member'];
+            $newMem->setEmail($email);
+            $newMem->setState($state);
+            $newMem->setSeeking($seek);
+            $newMem->setBio($bio);
 
-            $f3->reroute('/interests');
+            $_SESSION['member'] = $newMem;
+//            $_SESSION['email'] = $email;
+//            $_SESSION['state'] = $state;
+//            $_SESSION['seek'] = $seek;
+//            $_SESSION['bio'] = $bio;
+
+            if (strcmp(get_class($newMem), 'PremiumMember') == 0){
+                $f3->reroute('/interests');
+            } else {
+                $f3->reroute('/summary');
+            }
+
+
         }
         $template = new Template();
 //        print_r($f3->get('states'));
