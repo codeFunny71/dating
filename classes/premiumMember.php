@@ -1,12 +1,12 @@
 <?php
 
-class PremiereMember extends Member
+class PremiumMember extends Member
 {
     private $_inDoorInterests = [];
     private $_outDoorInterests = [];
 
     /**
-     * PremiereMember constructor.
+     * PremiumMember constructor.
      * @param array $_inDoorInterests
      * @param array $_outDoorInterests
      * Member constructor.
@@ -20,7 +20,7 @@ class PremiereMember extends Member
      * @param $_seeking
      * @param $_bio
      */
-    public function __construct(array $_inDoorInterests, array $_outDoorInterests, $_fName, $_lName, $_age, $_gender, $_phone, $_email, $_state, $_seeking, $_bio)
+    public function __construct($_fName, $_lName, $_age, $_gender, $_phone, $_email="", $_state="", $_seeking="", $_bio="", array $_inDoorInterests=[], array $_outDoorInterests=[])
     {
         parent::__construct($_fName, $_lName, $_age, $_gender, $_phone, $_email, $_state, $_seeking, $_bio);
         $this->_inDoorInterests = $_inDoorInterests;

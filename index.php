@@ -2,7 +2,7 @@
 
 /*
  * Marcus Absher
- * Date: 1-18-19
+ * Date: 2-1-19
  * http://mabsher.greenriverdev.com/328/dating/
 */
 
@@ -48,6 +48,7 @@ $f3->route('GET|POST /personalInfo',
             $age = $_POST['age'];
             $gender = $_POST['gender'];
             $phone = $_POST['phone'];
+            $premium = $_POST['premium'];
 
             include('model/validation-functions.php');
             validatePersonal();
@@ -59,11 +60,19 @@ $f3->route('GET|POST /personalInfo',
             $f3->set('gender', $gender);
             $f3->set('phone', $phone);
 
-            $_SESSION['fname'] = $fname;
-            $_SESSION['lname'] = $lname;
-            $_SESSION['age'] = $age;
-            $_SESSION['gender'] = $gender;
-            $_SESSION['phone'] = $phone;
+            //copy values to object and then to SESSION
+            if (isset($_POST['premium'])){
+                $newMem = new PremiumMember($fname, $lname, $age, $gender, $phone);
+            }else{
+                $newMem = new Member($fname, $lname, $age, $gender, $phone);
+            }
+            $_SESSION['member'] = $newMem;
+
+//            $_SESSION['fname'] = $fname;
+//            $_SESSION['lname'] = $lname;
+//            $_SESSION['age'] = $age;
+//            $_SESSION['gender'] = $gender;
+//            $_SESSION['phone'] = $phone;
 
             $f3->set('errors', $errors);
             $f3->set('valid', $valid);
@@ -92,7 +101,7 @@ $f3->route('GET|POST /profile',
     function($f3) {
         $valid = true;
         $errors =[];
-        //print_r($_SESSION);
+        print_r($_SESSION);
         $f3->set('valid', false);
         if(isset($_POST['submit'])) {
             $email = $_POST['email'];
