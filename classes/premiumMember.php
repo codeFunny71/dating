@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class PremiumMember
+ */
 class PremiumMember extends Member
 {
     private $_inDoorInterests = [];

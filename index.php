@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Marcus Absher
  * Date: 2-1-19
  * http://mabsher.greenriverdev.com/328/dating/
@@ -178,8 +178,14 @@ $f3->route('GET|POST /interests',
         $template = new Template();
 //        print_r($errors);
         if($f3->get('valid')){
-            $_SESSION['indoors'] = $indoors;
-            $_SESSION['outdoors'] = $outdoors;
+
+            $newMem = $_SESSION['member'];
+            $newMem->setInDoorInterests($indoors);
+            $newMem->setOutDoorInterests($outdoors);
+            $_SESSION['member'] = $newMem;
+
+//            $_SESSION['indoors'] = $indoors;
+//            $_SESSION['outdoors'] = $outdoors;
 
           $f3->reroute('/summary');
         } else {
@@ -191,20 +197,23 @@ $f3->route('GET|POST /interests',
 $f3->route('GET|POST /summary',
     function($f3) {
 
-        $f3->set('fname', $_SESSION['fname']);
-        $f3->set('lname', $_SESSION['lname']);
-        $f3->set('age', $_SESSION['age']);
-        $f3->set('gender', $_SESSION['gender']);
-        $f3->set('phone', $_SESSION['phone']);
+        $newMem = $_SESSION['member'];
+        $f3->set('fname', $newMem->getFName());
+        $f3->set('lname', $newMem->getLName());
+        $f3->set('age', $newMem->getAge());
+        $f3->set('gender', $newMem->getGender());
+        $f3->set('phone', $newMem->getPhone());
 
-        $f3->set('email', $_SESSION['email']);
-        $f3->set('state', $_SESSION['state']);
-        $f3->set('seek', $_SESSION['seek']);
-        $f3->set('bio', $_SESSION['bio']);
+        $f3->set('email', $newMem->getEmail());
+        $f3->set('state', $newMem->getState());
+        $f3->set('seek', $newMem->getSeeking());
+        $f3->set('bio', $newMem->getBio());
 
-        $f3->set('indoors', $_SESSION['indoors']);
-        $f3->set('outdoors', $_SESSION['outdoors']);
-
+        if (strcmp(get_class($newMem), 'PremiumMember') == 0) {
+            $f3->set('indoors', $newMem->getInDoorInterests());
+            $f3->set('outdoors', $newMem->getOutDoorInterests());
+            $f3->set('premium', true);
+        }
 
         $template = new Template();
 //        print_r($_SESSION);

@@ -27,15 +27,16 @@
                 <p class="border border-secondary p-3 mb-0">Email: {{@email}}</p>
                 <p class="border border-secondary p-3 mb-0">State: {{@state}}</p>
                 <p class="border border-secondary p-3 mb-0">Seeking: {{@seek}}</p>
-                <p class="rounded border border-secondary p-3">Interests:
-                    <repeat group="{{ @indoors }}" value="{{ @indoor }}">
-                        <span>{{ @indoor }} </span>
-                    </repeat>
-                    <repeat group="{{ @outdoors }}" value="{{ @outdoor }}">
-                        <span>{{ @outdoor }} </span>
-                    </repeat>
-                </p>
-
+                <check if="{{@premium}}">
+                    <p class="rounded border border-secondary p-3">Interests:
+                        <repeat group="{{ @indoors }}" value="{{ @indoor }}">
+                            <span>{{ @indoor }} </span>
+                        </repeat>
+                        <repeat group="{{ @outdoors }}" value="{{ @outdoor }}">
+                            <span>{{ @outdoor }} </span>
+                        </repeat>
+                    </p>
+                </check>
         </div>
             <div class="col-6">
                 <div>

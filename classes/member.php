@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Member
+ */
 class Member
 {
     private $_fName;
