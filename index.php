@@ -203,7 +203,7 @@ $f3->route('GET|POST /summary',
 
     });
 
-    //Define route
+    //Display admin view
     $f3->route('GET|POST /admin',
         function($f3) {
             $table = Database::getMembers();
@@ -212,6 +212,22 @@ $f3->route('GET|POST /summary',
             echo $template->render('views/admin.html');
         }
     );
+    //Add profile pages (**currently not working**)
+//    $f3->route('GET|POST /admin/@Id',
+//    function($f3, $params) {
+//        $table = Database::getMembers();
+//        $f3->set('table', $table);
+//        foreach ($table as $item){
+//            if ($item['member_id'] == $params){
+//                echo "<img src=\"images/avatar.png\" alt=\"avatar for person without image added\">";
+//                echo $item['fname']." ".$item['lname']."<br>";
+//                echo "I enjoy: ".$item['interests'].". <br>";
+//                echo "If you are interested Email me at: <br>";
+//                echo $item['email'];
+//            }
+//        }
+//    }
+//);
 
 //Run fat free
 $f3->run();
