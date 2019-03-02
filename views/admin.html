@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+ * Marcus Absher
+ * Date: 2-2-19
+ * http://mabsher.greenriverdev.com/328/dating/
+ -->
+
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link href="../styles/styles.css" rel="stylesheet">
+    <title>Admin Page</title>
+</head>
+    <body class="p-5">
+        <nav class="navbar navbar-expand-sm bg-light border">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="http://mabsher.greenriverdev.com/328/dating/">My Dating Website</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="admin">Admin</a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                </ul>
+            </div>
+        </nav>
+        <br>
+        <h1>Membership</h1>
+        <br>
+        <div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Seeking</th>
+                    <th scope="col">Bio</th>
+                    <th scope="col">Premium</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Interests</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <repeat group="{{ @table }}" value="{{ @element }}">
+                        <tr>
+                            <th scope="row">{{@element[member_id]}}</th>
+                                <td>{{@element[fname]}} {{@element[lname]}}</td>
+                                <td>{{@element[age]}}</td>
+                                <td>{{@element[gender]}}</td>
+                                <td>{{@element[phone]}}</td>
+                                <td>{{@element[email]}}</td>
+                                <td>{{@element[state]}}</td>
+                                <td>{{@element[seeking]}}</td>
+                                <td>{{@element[bio]}}</td>
+                                <td>
+                                    <check if="@element[premium] == 1">
+                                        <true>
+                                            <input type="checkbox" checked>
+                                        </true>
+                                        <false>
+                                            <input type="checkbox">
+                                        </false>
+
+                                    </check>
+                                </td>
+                                <td>{{@element[image]}}</td>
+                                <td>{{@element[interests]}}</td>
+                        </tr>
+                    </repeat>
+
+
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

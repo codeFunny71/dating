@@ -12,6 +12,7 @@ error_reporting(E_ALL);
 
 //Require autoload
 require_once('vendor/autoload.php');
+require_once 'model/database.php';
 session_start();
 
 $valid = false;
@@ -27,6 +28,8 @@ $f3->set('indoors', array('tv','movies','cooking','board games','puzzles','readi
 
 $f3->set('outdoors', array('hiking','biking','swimming','collecting','walking','climbing'));
 
+$data = new Database();
+$dbh = $data->connect();
 
 //Define route
 $f3->route('GET /',
@@ -68,33 +71,16 @@ $f3->route('GET|POST /personalInfo',
             }
             $_SESSION['member'] = $newMem;
 
-//            $_SESSION['fname'] = $fname;
-//            $_SESSION['lname'] = $lname;
-//            $_SESSION['age'] = $age;
-//            $_SESSION['gender'] = $gender;
-//            $_SESSION['phone'] = $phone;
-
             $f3->set('errors', $errors);
             $f3->set('valid', $valid);
             if($f3->get('valid')){
                 $f3->reroute('/profile');
-                //print_r($_SESSION);
             }
 
         }
         $template = new Template();
-//        if(!$f3-get('valid')){
-            echo $template->render('views/personalInfo.html');
-//        } else {
-//            $_SESSION['fname'] = $fname;
-//            $_SESSION['lname'] = $lname;
-//            $_SESSION['age'] = $age;
-//            $_SESSION['gender'] = $gender;
-//            $_SESSION['phone'] = $phone;
-//
-//            $f3->reroute('/profile');
-//        }
 
+            echo $template->render('views/personalInfo.html');
     });
 
 $f3->route('GET|POST /profile',
@@ -128,18 +114,12 @@ $f3->route('GET|POST /profile',
             $newMem->setBio($bio);
 
             $_SESSION['member'] = $newMem;
-//            $_SESSION['email'] = $email;
-//            $_SESSION['state'] = $state;
-//            $_SESSION['seek'] = $seek;
-//            $_SESSION['bio'] = $bio;
 
             if (strcmp(get_class($newMem), 'PremiumMember') == 0){
                 $f3->reroute('/interests');
             } else {
                 $f3->reroute('/summary');
             }
-
-
         }
         $template = new Template();
 //        print_r($f3->get('states'));
@@ -196,7 +176,7 @@ $f3->route('GET|POST /interests',
 
 $f3->route('GET|POST /summary',
     function($f3) {
-
+        global $data;
         $newMem = $_SESSION['member'];
         $f3->set('fname', $newMem->getFName());
         $f3->set('lname', $newMem->getLName());
@@ -215,11 +195,23 @@ $f3->route('GET|POST /summary',
             $f3->set('premium', true);
         }
 
+        Database::insertMember($newMem);
+
         $template = new Template();
 //        print_r($_SESSION);
         echo $template->render('views/summary.html');
 
     });
+
+    //Define route
+    $f3->route('GET|POST /admin',
+        function($f3) {
+            $table = Database::getMembers();
+            $f3->set('table', $table);
+            $template = new Template();
+            echo $template->render('views/admin.html');
+        }
+    );
 
 //Run fat free
 $f3->run();
